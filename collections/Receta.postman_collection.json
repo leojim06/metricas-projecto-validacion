@@ -1,0 +1,639 @@
+{
+	"info": {
+		"_postman_id": "c367d283-4c2d-4366-97ca-18a7a92cc2bd",
+		"name": "Receta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15657961"
+	},
+	"item": [
+		{
+			"name": "Agregar receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"receta_id\", data.id);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Receta Arepa\",\r\n    \"descripcion\": \"Es una receta de arepas\",\r\n    \"instruccionesPreparacion\": \"Primero vamos al super...\",\r\n    \"foto\":\"https://ichef.bbci.co.uk/news/640/cpsprodpb/1400C/production/_93723918_thinkstockphotos-627042504.jpg\",\r\n    \"video\": \"https://www.youtube.com/watch?v=gofd9jFHLgc\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar producto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Tomate\",\r\n    \"descripcion\": \"Fruto de la planta ...\",\r\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9aa00-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Tomate\",\n    \"descripcion\": \"Fruto de la planta ...\",\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar receta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"pm.globals.set(\"receta_id_2\", data.id);",
+							"",
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Receta Arepa 2\",\r\n    \"descripcion\": \"Es una nueva receta de arepas\",\r\n    \"instruccionesPreparacion\": \"Primero vamos al super...\",\r\n    \"foto\":\"https://ichef.bbci.co.uk/news/640/cpsprodpb/1400C/production/_93723918_thinkstockphotos-627042504.jpg\",\r\n    \"video\": \"https://www.youtube.com/watch?v=gofd9jFHLgc\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar producto",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Tomate\",\r\n    \"descripcion\": \"Fruto de la planta ...\",\r\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9aa00-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Tomate\",\n    \"descripcion\": \"Fruto de la planta ...\",\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las recetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Número de recetas > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"El código de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los productos",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"48a9aa00-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Tomate\",\r\n        \"descripcion\": \"Fruto de la planta ...\",\r\n        \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\r\n    },\r\n    {\r\n        \"id\": \"48a9aa00-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Pimienta\",\r\n        \"descripcion\": \"species de plantas del género Piper ...\",\r\n        \"historia\": \"Se conoce como pimienta a varias especies americanas que los conquistadores confundieron con la ansiada pimienta oriental ...\"\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}/{{receta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}",
+						"{{receta_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/{{producto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9aa00-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Tomate\",\r\n    \"descripcion\": \"Fruto de la planta ...\",\r\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la receta con el id indicado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el producto con el id suministrado.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Receta Arepa Actualizada\",\r\n    \"descripcion\": \"Es una nueva receta de arepas\",\r\n    \"instruccionesPreparacion\": \"Primero vamos al super...\",\r\n    \"foto\":\"https://ichef.bbci.co.uk/news/640/cpsprodpb/1400C/production/_93723918_thinkstockphotos-627042504.jpg\",\r\n    \"video\": \"https://www.youtube.com/watch?v=gofd9jFHLgc\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}/{{receta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}",
+						"{{receta_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un producto",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jiomate\",\r\n    \"descripcion\": \"Fruto de la planta ...\",\r\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/{{producto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9aa00-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Jiomate\",\n    \"descripcion\": \"Fruto de la planta ...\",\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la receta con el id indicado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Receta Arepa Actualizada 2\",\r\n    \"descripcion\": \"Es una nueva receta de arepas\",\r\n    \"instruccionesPreparacion\": \"Primero vamos al super...\",\r\n    \"foto\":\"https://ichef.bbci.co.uk/news/640/cpsprodpb/1400C/production/_93723918_thinkstockphotos-627042504.jpg\",\r\n    \"video\": \"https://www.youtube.com/watch?v=gofd9jFHLgc\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un producto que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jiomate\",\r\n    \"descripcion\": \"Fruto de la planta ...\",\r\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró el producto con el id indicado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}/{{receta_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}",
+						"{{receta_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un producto",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/{{producto_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"{{producto_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar una receta que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la receta con el id indicado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{recurso}}",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar un producto que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"No se encontró el producto con el id indicado\"\r\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "recurso",
+			"value": "recetas",
+			"type": "string"
+		}
+	]
+}

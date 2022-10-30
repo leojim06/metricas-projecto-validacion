@@ -1,0 +1,1164 @@
+{
+	"info": {
+		"_postman_id": "ab77262c-4f41-4525-a434-eb3feafef8e3",
+		"name": "CulturasGastronomicas-Productos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14453219"
+	},
+	"item": [
+		{
+			"name": "Agregar cultura castronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"cultura_gastronomica_id\", data.id);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar cultura castronómica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar un producto a una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Adicionar un producto a una cultura gastronómica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"{{producto_id_1}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cocina Italiana\",\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\",\n    \"productos\": [\n        {\n            \"id\": \"3f27f0f4-6f27-47b4-877a-336f49b537a9\",\n            \"nombre\": \"Tomate\",\n            \"descripcion\": \"Fruto de la planta ...\",\n            \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar un producto no válido a una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró el producto con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Adicionar un producto no válido a una cultura gastronómica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"No se encontró un producto con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Adicionar un producto a una cultura gastronómica no válida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"productos",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Adicionar un producto a una cultura gastronómica no válida",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos/{{producto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"{{producto_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 404,\n   \"message\": \"No se encontró una cultura gastronómica con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"{{producto_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"3f27f0f4-6f27-47b4-877a-336f49b537a9\",\n    \"nombre\": \"Tomate\",\n    \"descripcion\": \"Fruto de la planta ...\",\n    \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto no válido de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró el producto con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto no válido de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró un producto con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto de una cultura gastronómica no válida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"productos",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto de una cultura gastronómica no válida",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos/{{producto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"{{producto_id_1}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró una cultura gastronómica con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un producto no asociado a una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Get expected error message\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"El producto con el id suministrado no está asociado a la cultura gastronómica\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"{{producto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un producto de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"{{producto_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"El producto con el id suministrado no está asociado a la cultura gastronómica\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los productos de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los productos de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"3f27f0f4-6f27-47b4-877a-336f49b537a9\",\n        \"nombre\": \"Tomate\",\n        \"descripcion\": \"Fruto de la planta ...\",\n        \"historia\": \"El tomate es una de las hortalizas más consumidas a nivel mundial ...\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los productos de una cultura gastronómica no válida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"productos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los productos de una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró una cultura gastronómica con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar productos de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 201\", function () {",
+							"   pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"{{producto_id_2}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar productos de una cultura gastronómica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{producto_id_2}}\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cocina Italiana\",\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\",\n    \"productos\": [\n        {\n            \"id\": \"5340aef1-0f3a-41a3-8410-b98148c8d5c0\",\n            \"nombre\": \"Ajo\",\n            \"descripcion\": \"Fruto de la planta ...\",\n            \"historia\": \"El ajo es una de las hortalizas más consumidas a nivel mundial ...\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar productos no válidos en una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró el producto con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar productos no válidos en una cultura gastronómica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró un producto con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar productos en una cultura gastronómica no válida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": \"{{producto_id_2}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"productos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar productos en una cultura gastronómica no válida",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"{{producto_id_2}}\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"productos"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró una cultura gastronómica con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Elimina un producto de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {",
+							"   pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"{{producto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Elimina un producto de una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"{{producto_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Elimina un producto de una cultura gastronómica no válida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos/{{producto_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000",
+						"productos",
+						"{{producto_id_2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Elimina un producto de una cultura gastronómica no válida",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000/productos/{{producto_id_2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"00000000-0000-0000-0000-000000000000",
+								"productos",
+								"{{producto_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró una cultura gastronómica con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Elimina un producto no válido de una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {",
+							"   pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"No se encontró el producto con el id suministrado\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Elimina un producto no válido de una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró un producto con el id suministrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Elimina un producto no asociado a una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 412\", function () {",
+							"   pm.response.to.have.status(412);",
+							"});",
+							"",
+							"pm.test(\"Se obtiene el mensaje de error esperado\", function () {",
+							"   var data = pm.response.json();",
+							"   pm.expect(data.message).to.eql(\"El producto con el id suministrado no está asociado a la cultura gastronómica\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}",
+						"productos",
+						"{{producto_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Elimina un producto no asociado a una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}/productos/{{producto_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"culturas-gastronomicas",
+								"{{cultura_gastronomica_id}}",
+								"productos",
+								"{{producto_id_1}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n   \"statusCode\": 412,\n   \"message\": \"El producto con el id suministrado no está asociado a la cultura gastronómica\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

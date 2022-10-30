@@ -1,0 +1,1026 @@
+{
+	"info": {
+		"_postman_id": "f832c071-eae4-40e9-bb6b-a56ffb3c1660",
+		"name": "CulturasGastronomicas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17993969"
+	},
+	"item": [
+		{
+			"name": "Login usuario escritura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"token_escritura\", data.token);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"write\",\r\n    \"password\": \"write\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Details about a user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user?id=-46073569",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "-46073569"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "tempor aliqua",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"id\": 38013802,\n  \"name\": \"ullamc\",\n  \"tag\": \"consectetur fugiat aute\"\n}"
+				},
+				{
+					"name": "unexpected error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user?id=-46073569",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "-46073569"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"code\": 89918776,\n  \"message\": \"culpa fugiat esse\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login usuario lectura",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"token_lectura\", data.token);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"read\",\r\n    \"password\": \"read\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Details about a user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user?id=-46073569",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "-46073569"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "tempor aliqua",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"id\": 38013802,\n  \"name\": \"ullamc\",\n  \"tag\": \"consectetur fugiat aute\"\n}"
+				},
+				{
+					"name": "unexpected error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user?id=-46073569",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "-46073569"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"code\": 89918776,\n  \"message\": \"culpa fugiat esse\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login usuario eliminacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"token_eliminacion\", data.token);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"delete\",\r\n    \"password\": \"delete\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/usuarios/login",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Details about a user",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user?id=-46073569",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "-46073569"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-next",
+							"value": "tempor aliqua",
+							"description": "A link to the next page of responses"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"id\": 38013802,\n  \"name\": \"ullamc\",\n  \"tag\": \"consectetur fugiat aute\"\n}"
+				},
+				{
+					"name": "unexpected error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/user?id=-46073569",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "-46073569"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"code\": 89918776,\n  \"message\": \"culpa fugiat esse\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar cultura castronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"cultura_gastronomica_id\", data.id);\r",
+							"\r",
+							"pm.test(\"El código de estado es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_escritura}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar cultura castronómica",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las culturas castronómicas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Cantidad de culturas gastronómicas > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_lectura}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todas las culturas castronómicas",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n        \"nombre\": \"Cocina Italiana\",\r\n        \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\",\r\n        \"paises\": [{\r\n            \"id\":\"48a9ab90-1276-11ed-861d-0242ac120008\",\r\n            \"nombre\": \"Italia\"\r\n        }],\r\n        \"restaurantes\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120308\",\r\n            \"nombre\": \"Restaurante Italiano\",\r\n            \"ciudad\": \"Bogotá\",\r\n            \"pais\": {\r\n                \"id\":\"48a9ab90-1276-11ed-861d-0242ac128008\",\r\n                \"nombre\": \"Colombia\"\r\n            },\r\n            \"estrellasMichelin\": 3,\r\n            \"fechaConsecucionEstrellaMichelin\": 2005\r\n        }],\r\n        \"productos\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120328\",\r\n            \"nombre\": \"Producto\",\r\n            \"descripcion\": \"descripción del producto\",\r\n            \"historia\": \"historia del producto\",\r\n            \"categoriaProducto\": {\r\n                \"id\": \"48a9ab90-1276-11ed-861d-0242ac120122\",\r\n                \"nombre\": \"Condimento\"\r\n            }\r\n        }],\r\n        \"recetas\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac510008\",\r\n            \"nombre\": \"Pasta napolitana\",\r\n            \"descripcion\": \"Reseta para preparar pasta\",\r\n            \"instruccionesPreparacion\": \"Ingredientes: \\n1. Pasta ...\",\r\n            \"foto\": {\r\n                \"id\": \"48a9ab90-1276-11ed-861d-0242cc120328\",\r\n                \"url\": \"https://fotos.com/123456\",\r\n                \"tipo\": \"FOTO\"\r\n            },\r\n            \"video\":{\r\n                \"id\": \"48a9ab90-1276-11ed-861d-0242cd120328\",\r\n                \"url\": \"https://videos.com/123456\",\r\n                \"tipo\": \"VIDEO\"\r\n            }\r\n        }]\r\n    },\r\n    {\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242bb120002\",\r\n        \"nombre\": \"Cocina Italiana\",\r\n        \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\",\r\n        \"paises\": [{\r\n            \"id\":\"48a9ab90-1276-11ed-861d-0242bb120008\",\r\n            \"nombre\": \"Italia\"\r\n        }],\r\n        \"restaurantes\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242bb120308\",\r\n            \"nombre\": \"Restaurante Italiano\",\r\n            \"ciudad\": [{\r\n                \"id\":\"48a9ab90-1276-11ed-861d-0242bb128008\",\r\n                \"nombre\": \"Colombia\"\r\n            }],\r\n            \"estrellasMichelin\": 3,\r\n            \"fechaConsecucionEstrellaMichelin\": 2005\r\n        }],\r\n        \"productos\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242bb120328\",\r\n            \"nombre\": \"Producto\",\r\n            \"descripcion\": \"descripción del producto\",\r\n            \"historia\": \"historia del producto\",\r\n            \"categoriaProducto\": {\r\n                \"id\": \"48a9ab90-1276-11ed-861d-0242bb120122\",\r\n                \"nombre\": \"Condimento\"\r\n            }\r\n        }],\r\n        \"recetas\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242bb510008\",\r\n            \"nombre\": \"Pasta napolitana\",\r\n            \"descripcion\": \"Reseta para preparar pasta\",\r\n            \"instruccionesPreparacion\": \"Ingredientes: \\n1. Pasta ...\",\r\n            \"foto\": {\r\n                \"id\": \"48a9ab90-1276-11ed-861d-0242bb120328\",\r\n                \"url\": \"https://fotos.com/123456\",\r\n                \"tipo\": \"FOTO\"\r\n            },\r\n            \"video\":{\r\n                \"id\": \"48a9ab90-1276-11ed-861d-0242bb120328\",\r\n                \"url\": \"https://videos.com/123456\",\r\n                \"tipo\": \"VIDEO\"\r\n            }\r\n        }]\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_lectura}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una cultura gastronómica",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/{{culturaGastronomica_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"{{culturaGastronomica_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\r\n    \"nombre\": \"Cocina Italiana\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\",\r\n    \"paises\": [{\r\n        \"id\":\"48a9ab90-1276-11ed-861d-0242ac120008\",\r\n        \"nombre\": \"Italia\"\r\n    }],\r\n    \"restaurantes\": [{\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120308\",\r\n        \"nombre\": \"Restaurante Italiano\",\r\n        \"ciudad\": [{\r\n            \"id\":\"48a9ab90-1276-11ed-861d-0242ac128008\",\r\n            \"nombre\": \"Colombia\"\r\n        }],\r\n        \"estrellasMichelin\": 3,\r\n        \"fechaConsecucionEstrellaMichelin\": 2005\r\n    }],\r\n    \"productos\": [{\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac120328\",\r\n        \"nombre\": \"Producto\",\r\n        \"descripcion\": \"descripción del producto\",\r\n        \"historia\": \"historia del producto\",\r\n        \"categoriaProducto\": [{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242ac120122\",\r\n            \"nombre\": \"Condimento\"\r\n        }]\r\n    }],\r\n    \"recetas\": [{\r\n        \"id\": \"48a9ab90-1276-11ed-861d-0242ac510008\",\r\n        \"nombre\": \"Pasta napolitana\",\r\n        \"descripcion\": \"Reseta para preparar pasta\",\r\n        \"instruccionesPreparacion\": \"Ingredientes: \\n1. Pasta ...\",\r\n        \"foto\": {\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242cc120328\",\r\n            \"url\": \"https://fotos.com/123456\",\r\n            \"tipo\": \"FOTO\"\r\n        },\r\n        \"video\":{\r\n            \"id\": \"48a9ab90-1276-11ed-861d-0242cd120328\",\r\n            \"url\": \"https://videos.com/123456\",\r\n            \"tipo\": \"VIDEO\"\r\n        }\r\n    }]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener una cultura gastronómica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id indicado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_lectura}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener una cultura gastronómica que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró la cultura gastronómica con el id indicado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_escritura}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Cocina Italiana nombre modificado\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una cultura gastronómica",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Cocina Italiana nombre modificado\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/{{culturaGastronomica_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"{{culturaGastronomica_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"id\": \"48a9ab90-1276-11ed-861d-0242ac120002\",\n    \"nombre\": \"Cocina Italiana nombre modificado\",\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar una cultura gastronómica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id indicado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_escritura}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Cocina Italiana nombre modificado\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar una cultura gastronómica que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Cocina Italiana nombre modificado\",\r\n    \"descripcion\": \"La cultura gastronómica Italiana se caracteriza por ...\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"No se encontró la cultura gastronómica con el id indicado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una cultura gastronómica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_eliminacion}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/{{cultura_gastronomica_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"{{cultura_gastronomica_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una cultura gastronómica",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/{{culturaGastronomica_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"{{culturaGastronomica_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar una cultura gastronómica que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"El código de estado es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Obtener mensaje de error esperado\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró la cultura gastronómica con el id indicado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token_eliminacion}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/culturas-gastronomicas/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"culturas-gastronomicas",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Borrar una cultura gastronómica que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/{{recurso}}/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{recurso}}",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"No se encontró la cultura gastronómica con el id indicado\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
