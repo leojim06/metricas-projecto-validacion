@@ -7,6 +7,8 @@ import {
 } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
+import { CulturaGastronomicaDto } from '../cultura-gastronomica/cultura-gastronomica.dto';
+import { CulturaGastronomicaResolver } from '../cultura-gastronomica/cultura-gastronomica.resolver';
 
 @Injectable()
 export class CulturaGastronomicaService {
@@ -36,6 +38,96 @@ export class CulturaGastronomicaService {
   }
 
   async obtenerPorId(id: string): Promise<CulturaGastronomicaEntity> {
+    const culturaGastronomica: CulturaGastronomicaEntity =
+      await this.culturaGastronomicaRepository.findOne({
+        where: { id },
+        relations: ['recetas', 'productos'],
+      });
+    if (!culturaGastronomica)
+      throw new BusinessLogicException(
+        'No se encontró la cultura gastronómica con el id indicado',
+        BusinessError.NOT_FOUND,
+      );
+
+    return culturaGastronomica;
+  }
+
+  async obtenerPorIdDuplicadoUno(id: string): Promise<CulturaGastronomicaEntity> {
+    const culturaGastronomica: CulturaGastronomicaEntity =
+      await this.culturaGastronomicaRepository.findOne({
+        where: { id },
+        relations: ['recetas', 'productos'],
+      });
+    if (!culturaGastronomica)
+      throw new BusinessLogicException(
+        'No se encontró la cultura gastronómica con el id indicado',
+        BusinessError.NOT_FOUND,
+      );
+
+    return culturaGastronomica;
+  }
+
+  async obtenerPorIdDuplicadoUno(id: string): Promise<CulturaGastronomicaEntity> {
+    const culturaGastronomica: CulturaGastronomicaEntity =
+      await this.culturaGastronomicaRepository.findOne({
+        where: { id },
+        relations: ['recetas', 'productos'],
+      });
+    if (!culturaGastronomica)
+      throw new BusinessLogicException(
+        'No se encontró la cultura gastronómica con el id indicado',
+        BusinessError.NOT_FOUND,
+      );
+
+    return culturaGastronomica;
+  }
+
+  async obtenerPorIdDuplicadoDos(id: string): Promise<CulturaGastronomicaEntity> {
+    const culturaGastronomica: CulturaGastronomicaEntity =
+      await this.culturaGastronomicaRepository.findOne({
+        where: { id },
+        relations: ['recetas', 'productos'],
+      });
+    if (!culturaGastronomica)
+      throw new BusinessLogicException(
+        'No se encontró la cultura gastronómica con el id indicado',
+        BusinessError.NOT_FOUND,
+      );
+
+    return culturaGastronomica;
+  }
+
+  async obtenerPorIdDuplicadoTres(id: string): Promise<CulturaGastronomicaEntity> {
+    const culturaGastronomica: CulturaGastronomicaEntity =
+      await this.culturaGastronomicaRepository.findOne({
+        where: { id },
+        relations: ['recetas', 'productos'],
+      });
+    if (!culturaGastronomica)
+      throw new BusinessLogicException(
+        'No se encontró la cultura gastronómica con el id indicado',
+        BusinessError.NOT_FOUND,
+      );
+
+    return culturaGastronomica;
+  }
+
+  async obtenerPorIdDuplicadoCuatro(id: string): Promise<CulturaGastronomicaEntity> {
+    const culturaGastronomica: CulturaGastronomicaEntity =
+      await this.culturaGastronomicaRepository.findOne({
+        where: { id },
+        relations: ['recetas', 'productos'],
+      });
+    if (!culturaGastronomica)
+      throw new BusinessLogicException(
+        'No se encontró la cultura gastronómica con el id indicado',
+        BusinessError.NOT_FOUND,
+      );
+
+    return culturaGastronomica;
+  }
+
+  async obtenerPorIdDuplicadoCinco(id: string): Promise<CulturaGastronomicaEntity> {
     const culturaGastronomica: CulturaGastronomicaEntity =
       await this.culturaGastronomicaRepository.findOne({
         where: { id },
