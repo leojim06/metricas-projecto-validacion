@@ -67,21 +67,6 @@ export class CulturaGastronomicaService {
     return culturaGastronomica;
   }
 
-  async obtenerPorIdDuplicadoUno(id: string): Promise<CulturaGastronomicaEntity> {
-    const culturaGastronomica: CulturaGastronomicaEntity =
-      await this.culturaGastronomicaRepository.findOne({
-        where: { id },
-        relations: ['recetas', 'productos'],
-      });
-    if (!culturaGastronomica)
-      throw new BusinessLogicException(
-        'No se encontró la cultura gastronómica con el id indicado',
-        BusinessError.NOT_FOUND,
-      );
-
-    return culturaGastronomica;
-  }
-
   async obtenerPorIdDuplicadoDos(id: string): Promise<CulturaGastronomicaEntity> {
     const culturaGastronomica: CulturaGastronomicaEntity =
       await this.culturaGastronomicaRepository.findOne({
