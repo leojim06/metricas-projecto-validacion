@@ -310,18 +310,4 @@ describe('CulturaGastronomicaRecetaService', () => {
       .buscarRecetaPorCulturaGastronomicaIdRecetaId(culturaGastronomica.id, recetas[0].id))
       .toBe(recetas[0])
   })
-
-  it('buscarRecetasPorCulturaGastronomicaId debe retornar todos los paise de una cultura gastronómica', async () => {
-    jest.spyOn(service, 'buscarRecetasPorCulturaGastronomicaId')
-      .mockImplementation(() => Promise.resolve(recetas));
-    expect(await controller.buscarRecetasPorCulturaGastronomicaId(culturaGastronomica.id)).toBe(recetas);
-  })
-
-  it('buscarRecetaPorCulturaGastronomicaIdRecetaId debe retornar una cultura gastronomica por id', async () => {
-    jest.spyOn(service, 'buscarRecetaPorCulturaGastronomicaIdRecetaId')
-      .mockImplementation(() => Promise.resolve(recetas[0]))
-    expect(await controller
-      .buscarRecetaPorCulturaGastronomicaIdRecetaId(culturaGastronomica.id, recetas[0].id))
-      .toBe(recetas[0])
-  })
 });
