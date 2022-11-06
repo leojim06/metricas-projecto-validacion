@@ -8,6 +8,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { faker } from '@faker-js/faker';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
+import { CulturaGastronomicaRecetaController } from './cultura-gastronomica-receta.controller';
 
 describe('CulturaGastronomicaRecetaService', () => {
   let service: CulturaGastronomicaRecetaService;
@@ -16,6 +17,7 @@ describe('CulturaGastronomicaRecetaService', () => {
   let culturaGastronomica: CulturaGastronomicaEntity;
   let nuevaReceta: RecetaEntity;
   let recetas: RecetaEntity[];
+  let controller: CulturaGastronomicaRecetaController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -41,6 +43,7 @@ describe('CulturaGastronomicaRecetaService', () => {
     recetaRepository = module.get<Repository<RecetaEntity>>(
       getRepositoryToken(RecetaEntity),
     );
+    controller = new CulturaGastronomicaRecetaController(service);
 
     await seedDatabase();
   });
@@ -293,4 +296,32 @@ describe('CulturaGastronomicaRecetaService', () => {
 
     expect(recetaBorrada).toBeUndefined();
   });
+
+  it('buscarPaisesPorCulturaGastronomicaId debe retornar todos los paise de una cultura gastronómica', async () => {
+    jest.spyOn(service, 'buscarRecetasPorCulturaGastronomicaId')
+      .mockImplementation(() => Promise.resolve(recetas));
+    expect(await controller.buscarRecetasPorCulturaGastronomicaId(culturaGastronomica.id)).toBe(recetas);
+  })
+
+  it('obtenerPorId debe retornar una cultura gastronomica por id', async () => {
+    jest.spyOn(service, 'buscarRecetaPorCulturaGastronomicaIdRecetaId')
+      .mockImplementation(() => Promise.resolve(recetas[0]))
+    expect(await controller
+      .buscarRecetaPorCulturaGastronomicaIdRecetaId(culturaGastronomica.id, recetas[0].id))
+      .toBe(recetas[0])
+  })
+
+  it('buscarRecetasPorCulturaGastronomicaId debe retornar todos los paise de una cultura gastronómica', async () => {
+    jest.spyOn(service, 'buscarRecetasPorCulturaGastronomicaId')
+      .mockImplementation(() => Promise.resolve(recetas));
+    expect(await controller.buscarRecetasPorCulturaGastronomicaId(culturaGastronomica.id)).toBe(recetas);
+  })
+
+  it('buscarRecetaPorCulturaGastronomicaIdRecetaId debe retornar una cultura gastronomica por id', async () => {
+    jest.spyOn(service, 'buscarRecetaPorCulturaGastronomicaIdRecetaId')
+      .mockImplementation(() => Promise.resolve(recetas[0]))
+    expect(await controller
+      .buscarRecetaPorCulturaGastronomicaIdRecetaId(culturaGastronomica.id, recetas[0].id))
+      .toBe(recetas[0])
+  })
 });

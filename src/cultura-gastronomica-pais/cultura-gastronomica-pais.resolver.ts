@@ -1,8 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { PaisEntity } from 'src/pais/pais.entity';
+import { PaisEntity } from '../pais/pais.entity';
 import { CulturaGastronomicaPaisService } from './cultura-gastronomica-pais.service';
 import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
-import { PaisDto } from 'src/pais/pais.dto';
+import { PaisDto } from '../pais/pais.dto';
 import { plainToInstance } from 'class-transformer';
 
 

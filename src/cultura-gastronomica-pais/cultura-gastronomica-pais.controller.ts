@@ -16,8 +16,8 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/business-error
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { CulturaGastronomicaPaisService } from './cultura-gastronomica-pais.service';
-import { PaisDto } from 'src/pais/pais.dto';
-import { PaisEntity } from 'src/pais/pais.entity';
+import { PaisDto } from  '../pais/pais.dto';
+import { PaisEntity } from '../pais/pais.entity';
 import { plainToInstance } from 'class-transformer';
 
 @Controller('culturas-gastronomicas')

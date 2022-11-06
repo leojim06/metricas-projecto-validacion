@@ -11,12 +11,12 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { RecetaDto } from 'src/receta/receta.dto';
-import { RecetaEntity } from 'src/receta/receta.entity';
-import { HasRoles } from 'src/shared/decorator/hasroles.decorator';
-import { Role } from 'src/shared/security/role';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { RecetaDto } from '../receta/receta.dto';
+import { RecetaEntity } from '../receta/receta.entity';
+import { HasRoles } from '../shared/decorator/hasroles.decorator';
+import { Role } from '../shared/security/role';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
 import { CulturaGastronomicaRecetaService } from './cultura-gastronomica-receta.service';
 

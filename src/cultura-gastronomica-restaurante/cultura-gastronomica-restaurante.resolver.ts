@@ -1,8 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CulturaGastronomicaEntity } from 'src/cultura-gastronomica/cultura-gastronomica.entity';
+import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
 import { CulturaGastronomicaRestauranteService } from './cultura-gastronomica-restaurante.service';
 import { RestauranteEntity } from '../restaurante/restaurante.entity';
-import { RestauranteDto } from 'src/restaurante/resturante.dto';
+import { RestauranteDto } from '../restaurante/resturante.dto';
 import { plainToInstance } from 'class-transformer';
 
 @Resolver()
