@@ -22,7 +22,7 @@ export class CulturaGastronomicaRestauranteService {
 
     @Inject(CACHE_MANAGER)
     private readonly cacheManager: Cache,
-  ) {}
+  ) { }
 
   async agregarRestauranteCulturaGastronomica(
     culturaGastronomicaId: string,
@@ -140,10 +140,10 @@ export class CulturaGastronomicaRestauranteService {
         BusinessError.NOT_FOUND,
       );
 
-    for (let i = 0; i < restaurantes.length; i++) {
+    for (let r of restaurantes) {
       const restaurante: RestauranteEntity =
         await this.restauranteRepository.findOne({
-          where: { id: `${restaurantes[i].id}` },
+          where: { id: r.id },
         });
       if (!restaurante)
         throw new BusinessLogicException(

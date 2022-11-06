@@ -129,9 +129,9 @@ export class CulturaGastronomicaRecetaService {
         BusinessError.NOT_FOUND,
       );
 
-    for (let i = 0; i < recetas.length; i++) {
+    for (let r of recetas) {
       const receta: RecetaEntity = await this.recetaRepository.findOne({
-        where: { id: `${recetas[i].id}` },
+        where: { id: r.id },
       });
       if (!receta)
         throw new BusinessLogicException(
