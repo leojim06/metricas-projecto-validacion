@@ -38,3 +38,4 @@ jMeter/ejecutar_plan_pruebas_productos.sh
 jMeter/ejecutar_plan_pruebas_cultura_gastronomica_producto.sh
 
 src/schema.gql
+.env
