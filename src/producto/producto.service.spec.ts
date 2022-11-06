@@ -9,6 +9,7 @@ import { CategoriaProductoEntity } from '../categoria-producto/categoria-product
 import { CategoriaProductoService } from '../categoria-producto/categoria-producto.service';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
+import { ProductoController } from './producto.controller';
 
 describe('ProductoService', () => {
   let service: ProductoService;
@@ -17,6 +18,7 @@ describe('ProductoService', () => {
   let repositoryCategoriaProducto: Repository<CategoriaProductoEntity>;
   let productosList: ProductoEntity[];
   let categoriaProducto: CategoriaProductoEntity;
+  let controller: ProductoController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -43,6 +45,8 @@ describe('ProductoService', () => {
     repositoryCategoriaProducto = module.get<
       Repository<CategoriaProductoEntity>
     >(getRepositoryToken(CategoriaProductoEntity));
+
+    controller = new ProductoController(service, categoriaProductoService)
     await seedDatabase();
   });
 
@@ -205,4 +209,14 @@ describe('ProductoService', () => {
       'No se encontró el producto con el id suministrado',
     );
   });
+
+  it('obtenerTodos debe retornar todos los productos', async () => {
+    jest.spyOn(service, 'findAll').mockImplementation(() => Promise.resolve(productosList));
+    expect(await controller.findAll()).toBe(productosList);
+  })
+
+  it('obtenerPorId debe retornar un producto por id', async () => {
+    jest.spyOn(service, 'findOne').mockImplementation(() => Promise.resolve(productosList[0]))
+    expect(await controller.findOne(productosList[0].id)).toBe(productosList[0])
+  })
 });

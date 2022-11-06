@@ -7,11 +7,13 @@ import { PaisService } from './pais.service';
 import { faker } from '@faker-js/faker';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
+import { PaisController } from './pais.controller';
 
 describe('PaisService', () => {
   let service: PaisService;
   let repository: Repository<PaisEntity>;
   let paisLista: PaisEntity[];
+  let controller: PaisController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -31,6 +33,7 @@ describe('PaisService', () => {
     repository = module.get<Repository<PaisEntity>>(
       getRepositoryToken(PaisEntity),
     );
+    controller = new PaisController(service)
     await seedDatabase();
   });
 
@@ -131,4 +134,15 @@ describe('PaisService', () => {
       'No se encontró el país con el id indicado',
     );
   });
+
+  it('obtenerTodos debe retornar todos los paises', async () => {
+    jest.spyOn(service, 'obtenerTodos').mockImplementation(() => Promise.resolve(paisLista));
+    expect(await controller.obtenerTodos()).toBe(paisLista);
+  })
+
+  it('obtenerPorId debe retornar un pais por id', async () => {
+    jest.spyOn(service, 'obtenerPorId').mockImplementation(() => Promise.resolve(paisLista[0]))
+    expect(await controller.obtenerPais(paisLista[0].id)).toBe(paisLista[0])
+  })
+
 });

@@ -6,11 +6,13 @@ import { Repository } from 'typeorm';
 import { faker } from '@faker-js/faker';
 import { RecetaEntity } from './receta.entity';
 import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
+import { RecetaController } from './receta.controller';
 
 describe('RecetaService', () => {
   let service: RecetaService;
   let repository: Repository<RecetaEntity>;
   let recetaLista: RecetaEntity[];
+  let controller: RecetaController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -22,6 +24,7 @@ describe('RecetaService', () => {
     repository = module.get<Repository<RecetaEntity>>(
       getRepositoryToken(RecetaEntity),
     );
+    controller = new RecetaController(service);
     await seedDatabase();
   });
 
@@ -139,4 +142,14 @@ describe('RecetaService', () => {
       'No se encontró la receta con el id indicado',
     );
   });
+
+  it('obtenerTodos debe retornar todas las recetas', async () => {
+    jest.spyOn(service, 'obtenerTodos').mockImplementation(() => Promise.resolve(recetaLista));
+    expect(await controller.obtenerTodos()).toBe(recetaLista);
+  })
+
+  it('obtenerPorId debe retornar una receta por id', async () => {
+    jest.spyOn(service, 'obtenerPorId').mockImplementation(() => Promise.resolve(recetaLista[0]))
+    expect(await controller.obtenerReceta(recetaLista[0].id)).toBe(recetaLista[0])
+  })
 });
