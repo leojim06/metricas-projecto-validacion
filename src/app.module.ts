@@ -32,11 +32,11 @@ import { ApolloDriver } from '@nestjs/apollo';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'culturaGastronomicaDB',
+      host: process.env.HOST,
+      port: Number(process.env.PORT),
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [
         CulturaGastronomicaEntity,
         ProductoEntity,
@@ -65,4 +65,4 @@ import { ApolloDriver } from '@nestjs/apollo';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
