@@ -19,7 +19,7 @@ export class CulturaGastronomicaProductoService {
     private readonly productoRepository: Repository<ProductoEntity>,
     @Inject(CACHE_MANAGER)
     private readonly cacheManager: Cache,
-  ) {}
+  ) { }
 
   async adicionarProductoACulturaGastronomica(
     culturaGastronomicaId: string,
@@ -137,9 +137,9 @@ export class CulturaGastronomicaProductoService {
         BusinessError.NOT_FOUND,
       );
 
-    for (let i = 0; i < productos.length; i++) {
+    for (let p of productos) {
       const producto: ProductoEntity = await this.productoRepository.findOne({
-        where: { id: productos[i].id },
+        where: { id: p.id },
       });
       if (!producto)
         throw new BusinessLogicException(

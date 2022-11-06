@@ -134,9 +134,9 @@ export class CulturaGastronomicaPaisService {
         BusinessError.NOT_FOUND,
       );
 
-    for (let i = 0; i < paises.length; i++) {
+    for (let p of paises) {
       const pais: PaisEntity = await this.paisRepository.findOne({
-        where: { id: `${paises[i].id}` },
+        where: { id: p.id },
       });
       if (!pais)
         throw new BusinessLogicException(
