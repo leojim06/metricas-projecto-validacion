@@ -274,4 +274,19 @@ describe('CulturaGastronomicaPaisService', () => {
       .buscarPaisPorCulturaGastronomicaIdPaisId(culturaGastronomica.id, paises[0].id))
       .toBe(paises[0])
   })
+
+  it('agregarPaisCulturaGastronomica debe asociar un pais con una cultura gastronomica', async () => {
+    jest.spyOn(service, 'agregarPaisCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.agregarPaisCulturaGastronomica(culturaGastronomica.id, nuevoPais.id)).toBe(culturaGastronomica)
+  })
+
+  it('asociarPaisesCulturaGastronomica debe asociar un pais con una cultura gastronomica', async () => {
+    jest.spyOn(service, 'asociarPaisesCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.asociarPaisesCulturaGastronomica(paises, culturaGastronomica.id)).toBe(culturaGastronomica)
+  })
+
+  it('actualizar debe actualizar un pais', async () => {
+    jest.spyOn(service, 'borrarPaisCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.borrarRecetaCulturaGastronomica(culturaGastronomica.id, paises[0].id)).toBe(culturaGastronomica)
+  })
 });
