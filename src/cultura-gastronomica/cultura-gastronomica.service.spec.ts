@@ -7,13 +7,11 @@ import { CulturaGastronomicaEntity } from './cultura-gastronomica.entity';
 import { CulturaGastronomicaService } from './cultura-gastronomica.service';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
-import { CulturaGastronomicaController } from './cultura-gastronomica.controller';
 
 describe('CulturaGastronomicaService', () => {
   let service: CulturaGastronomicaService;
   let repository: Repository<CulturaGastronomicaEntity>;
   let culturaGastronomicaList: CulturaGastronomicaEntity[];
-  let controller: CulturaGastronomicaController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -36,7 +34,6 @@ describe('CulturaGastronomicaService', () => {
     repository = module.get<Repository<CulturaGastronomicaEntity>>(
       getRepositoryToken(CulturaGastronomicaEntity),
     );
-    controller = new CulturaGastronomicaController(service);
     await seedDatabase();
   });
 
@@ -165,14 +162,4 @@ describe('CulturaGastronomicaService', () => {
       'No se encontró la cultura gastronómica con el id indicado',
     );
   });
-
-  it('obtenerTodos debe retornar todas las culturas gastronómicas', async () => {
-    jest.spyOn(service, 'obtenerTodos').mockImplementation(() => Promise.resolve(culturaGastronomicaList));
-    expect(await controller.obtenerTodos()).toBe(culturaGastronomicaList);
-  })
-
-  it('obtenerPorId debe retornar una cultura gastronomica por id', async () => {
-    jest.spyOn(service, 'obtenerPorId').mockImplementation(() => Promise.resolve(culturaGastronomicaList[0]))
-    expect(await controller.findOne(culturaGastronomicaList[0].id)).toBe(culturaGastronomicaList[0])
-  })
 });
