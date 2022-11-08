@@ -11,7 +11,6 @@ describe('CategoriaProductoService', () => {
   let service: CategoriaProductoService;
   let repository: Repository<CategoriaProductoEntity>;
   let categoriasProductoList: CategoriaProductoEntity[];
-  let controller: CategoriaProductoController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -23,7 +22,6 @@ describe('CategoriaProductoService', () => {
     repository = module.get<Repository<CategoriaProductoEntity>>(
       getRepositoryToken(CategoriaProductoEntity),
     );
-    controller = new CategoriaProductoController(service);
     await seedDatabase();
   });
 
@@ -135,15 +133,5 @@ describe('CategoriaProductoService', () => {
       'message',
       'No se encontró la categoría de producto con el id suministrado',
     );
-  });
-
-  it('findAll debe retornar todas las categorias producto', async () => {
-    jest.spyOn(service, 'findAll').mockImplementation(() => Promise.resolve(categoriasProductoList))
-    expect(await controller.findAll()).toBe(categoriasProductoList)
-  });
-
-  it('findAll debe retornar una categorias producto por id', async () => {
-    jest.spyOn(service, 'findOne').mockImplementation(() => Promise.resolve(categoriasProductoList[0]))
-    expect(await controller.findOne(categoriasProductoList[0].id)).toBe(categoriasProductoList[0])
   });
 });
