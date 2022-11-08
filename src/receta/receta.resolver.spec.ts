@@ -85,16 +85,6 @@ describe('Receta resolver', () => {
         expect(result).toBe(recetaList[0])
     })
 
-    // it('Mutation debe crear una receta', () => {
-    //     const result = resolver.crearReceta(recetaNueva)
-    //     expect(result).toBe(recetaNueva)
-    // })
-
-    // it('Mutation debe actualizar una receta', () => {
-    //     const result = resolver.actualizarReceta(recetaList[0].id, recetaNueva)
-    //     expect(result).toBe(recetaList[0])
-    // })
-
     it('Mutation debe borrar una receta', () => {
         const result = resolver.eliminarRceta(recetaList[0].id)
         expect(result).toEqual(recetaList[0].id)

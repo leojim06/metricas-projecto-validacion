@@ -64,17 +64,7 @@ describe('Producto controller', () => {
         jest.spyOn(service, 'findOne').mockImplementation(() => Promise.resolve(productoList[0]))
         expect(await controller.findOne(productoList[0].id)).toBe(productoList[0])
     })
-
-    // it('crear debe crear un producto', async () => {
-    //     jest.spyOn(service, 'create').mockImplementation(() => Promise.resolve(productoList[0]))
-    //     expect(await controller.create(productoNuevo)).toBe(productoList[0])
-    // })
-
-    // it('actualizar debe actualizar un producto', async () => {
-    //     jest.spyOn(service, 'update').mockImplementation(() => Promise.resolve(productoList[0]))
-    //     expect(await controller.update(productoList[0].id, productoList[0])).toBe(productoList[0])
-    // })
-
+    
     it('actualizar debe actualizar un producto', async () => {
         jest.spyOn(service, 'delete').mockImplementation(() => Promise.resolve())
         expect(await controller.delete(productoList[0].id)).toBe(undefined)

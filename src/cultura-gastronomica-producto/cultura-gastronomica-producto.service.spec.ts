@@ -340,11 +340,6 @@ describe('CulturaGastronomicaProductoService', () => {
     expect(await controller.adicionarProductoACulturaGastronomica(culturaGastronomica.id, nuevoProducto.id)).toBe(culturaGastronomica)
   })
 
-  // it('asociarProductosCulturaGastronomica debe asociar un producto con una cultura gastronomica', async () => {
-  //   jest.spyOn(service, 'asociarProductosCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
-  //   expect(await controller.asociarProductosCulturaGastronomica(productosList, culturaGastronomica.id)).toBe(culturaGastronomica)
-  // })
-
   it('eliminarProductoCulturaGastronomica debe eliminar un producto de una cultura gastronomica un pais', async () => {
     jest.spyOn(service, 'eliminarProductoCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
     expect(await controller.deleteArtworkMuseum(culturaGastronomica.id, productosList[0].id)).toBe(culturaGastronomica)
