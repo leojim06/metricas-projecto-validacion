@@ -200,7 +200,7 @@ export class CulturaGastronomicaRestauranteService {
 
 
   delete({ id }: IGetProduct): boolean {
-    products.filter((product: IProduct) => product.id == id);
+    products.filter(product => product.id.toString() !== id);
     return true;
   }
 }
