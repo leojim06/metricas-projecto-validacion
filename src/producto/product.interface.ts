@@ -16,7 +16,7 @@ export interface ICreateProduct {
   }
   
   export interface IGetProduct {
-    id: string;
+    id: number;
   }
   
   export interface IGetProductsPagination {

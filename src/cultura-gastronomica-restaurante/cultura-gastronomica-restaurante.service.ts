@@ -15,7 +15,8 @@ import products from "../producto/product.data";
 @Injectable()
 export class CulturaGastronomicaRestauranteService {
   cacheKey: string = 'culturas-gastronomicas';
-
+  existe: boolean;
+  
   constructor(
     @InjectRepository(CulturaGastronomicaEntity)
     private readonly culturaGastronomicaRepository: Repository<CulturaGastronomicaEntity>,
@@ -200,7 +201,14 @@ export class CulturaGastronomicaRestauranteService {
 
 
   delete({ id }: IGetProduct): boolean {
-    products.filter(product => product.id.toString() !== id);
-    return true;
+
+    products.forEach(product => {
+      if(product.id !== id){
+        this.existe = true;
+      }else{
+        this.existe = false;
+      }
+    });
+      return this.existe;
   }
 }
