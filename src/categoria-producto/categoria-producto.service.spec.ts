@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { CategoriaProductoEntity } from './categoria-producto.entity';
 import { CategoriaProductoService } from './categoria-producto.service';
 import { faker } from '@faker-js/faker';
-import { CategoriaProductoController } from './categoria-producto.controller';
 
 describe('CategoriaProductoService', () => {
   let service: CategoriaProductoService;
