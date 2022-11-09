@@ -21,7 +21,7 @@ export class PaisResolver {
     }
 
     @Mutation(() => PaisEntity)
-    async crearPais(
+    crearPais(
         @Args('pais') paisDto: PaisDto,
     ): Promise<PaisEntity> {
         const pais: PaisEntity = {
@@ -32,7 +32,7 @@ export class PaisResolver {
     }
 
     @Mutation(() => PaisEntity)
-    async actualizarPais(
+    actualizarPais(
         @Args('id') id: string,
         @Args('pais') paisDto: PaisDto,
     ): Promise<PaisEntity> {

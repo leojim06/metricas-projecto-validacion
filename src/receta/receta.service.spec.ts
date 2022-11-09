@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { faker } from '@faker-js/faker';
 import { RecetaEntity } from './receta.entity';
 import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
+import { RecetaController } from './receta.controller';
 
 describe('RecetaService', () => {
   let service: RecetaService;

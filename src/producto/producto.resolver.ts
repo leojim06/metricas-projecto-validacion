@@ -1,5 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { CategoriaProductoService } from 'src/categoria-producto/categoria-producto.service';
+import { CategoriaProductoService } from '../categoria-producto/categoria-producto.service';
 import { ProductoDto } from './producto.dto';
 import { ProductoEntity } from './producto.entity';
 import { ProductoService } from './producto.service';

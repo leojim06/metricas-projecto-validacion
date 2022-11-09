@@ -11,10 +11,10 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { HasRoles } from 'src/shared/decorator/hasroles.decorator';
-import { Role } from 'src/shared/security/role';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { HasRoles } from '../shared/decorator/hasroles.decorator';
+import { Role } from '../shared/security/role';
 import { ProductoDto } from '../producto/producto.dto';
 import { ProductoEntity } from '../producto/producto.entity';
 import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';

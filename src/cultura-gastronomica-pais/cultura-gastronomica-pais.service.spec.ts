@@ -8,6 +8,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { faker } from '@faker-js/faker';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
+import { CulturaGastronomicaPaisController } from './cultura-gastronomica-pais.controller';
 
 describe('CulturaGastronomicaPaisService', () => {
   let service: CulturaGastronomicaPaisService;
@@ -16,6 +17,7 @@ describe('CulturaGastronomicaPaisService', () => {
   let culturaGastronomica: CulturaGastronomicaEntity;
   let nuevoPais: PaisEntity;
   let paises: PaisEntity[];
+  let controller: CulturaGastronomicaPaisController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -40,6 +42,7 @@ describe('CulturaGastronomicaPaisService', () => {
     paisRepository = module.get<Repository<PaisEntity>>(
       getRepositoryToken(PaisEntity),
     );
+    controller = new CulturaGastronomicaPaisController(service)
 
     await seedDatabase();
   });
@@ -257,4 +260,33 @@ describe('CulturaGastronomicaPaisService', () => {
 
     expect(paisBorrado).toBeUndefined();
   });
+
+  it('buscarPaisesPorCulturaGastronomicaId debe retornar todos los paise de una cultura gastronómica', async () => {
+    jest.spyOn(service, 'buscarPaisesPorCulturaGastronomicaId')
+      .mockImplementation(() => Promise.resolve(paises));
+    expect(await controller.buscarPaisesPorCulturaGastronomicaId(culturaGastronomica.id)).toBe(paises);
+  })
+
+  it('buscarPaisPorCulturaGastronomicaIdPaisId debe retornar una cultura gastronomica por id', async () => {
+    jest.spyOn(service, 'buscarPaisPorCulturaGastronomicaIdPaisId')
+      .mockImplementation(() => Promise.resolve(paises[0]))
+    expect(await controller
+      .buscarPaisPorCulturaGastronomicaIdPaisId(culturaGastronomica.id, paises[0].id))
+      .toBe(paises[0])
+  })
+
+  it('agregarPaisCulturaGastronomica debe asociar un pais con una cultura gastronomica', async () => {
+    jest.spyOn(service, 'agregarPaisCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.agregarPaisCulturaGastronomica(culturaGastronomica.id, nuevoPais.id)).toBe(culturaGastronomica)
+  })
+
+  it('asociarPaisesCulturaGastronomica debe asociar un pais con una cultura gastronomica', async () => {
+    jest.spyOn(service, 'asociarPaisesCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.asociarPaisesCulturaGastronomica(paises, culturaGastronomica.id)).toBe(culturaGastronomica)
+  })
+
+  it('actualizar debe actualizar un pais', async () => {
+    jest.spyOn(service, 'borrarPaisCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.borrarRecetaCulturaGastronomica(culturaGastronomica.id, paises[0].id)).toBe(culturaGastronomica)
+  })
 });

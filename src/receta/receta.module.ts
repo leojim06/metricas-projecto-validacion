@@ -5,7 +5,7 @@ import { RecetaService } from './receta.service';
 import { RecetaController } from './receta.controller';
 import { RecetaResolver } from './receta.resolver';
 import { CulturaGastronomicaService } from '../cultura-gastronomica/cultura-gastronomica.service';
-import { CulturaGastronomicaEntity } from 'src/cultura-gastronomica/cultura-gastronomica.entity';
+import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
 import * as sqliteStore from 'cache-manager-sqlite';
 
 @Module({

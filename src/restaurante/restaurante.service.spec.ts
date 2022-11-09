@@ -7,22 +7,24 @@ import { RestauranteService } from './restaurante.service';
 import { RestauranteEntity } from './restaurante.entity';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
+import { RestauranteController } from './restaurante.controller';
 
 describe('RestauranteService', () => {
   let service: RestauranteService;
   let repository: Repository<RestauranteEntity>;
   let restauranteLista: RestauranteEntity[];
+  let controller: RestauranteController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [...TypeOrmTestingConfig(),
-        CacheModule.register({
-          store: sqliteStore,
-          path: ':memory:',
-          options: {
-            ttl: 5
-          },
-        }),],
+      CacheModule.register({
+        store: sqliteStore,
+        path: ':memory:',
+        options: {
+          ttl: 5
+        },
+      }),],
       providers: [RestauranteService],
     }).compile();
 
@@ -30,6 +32,7 @@ describe('RestauranteService', () => {
     repository = module.get<Repository<RestauranteEntity>>(
       getRepositoryToken(RestauranteEntity),
     );
+    controller = new RestauranteController(service);
     await seedDatabase();
   });
 
@@ -74,7 +77,7 @@ describe('RestauranteService', () => {
     );
   });
 
-  
+
   it('crear debe retornar una nueva restaurante', async () => {
     const restaurante: RestauranteEntity = {
       id: '',
@@ -149,4 +152,14 @@ describe('RestauranteService', () => {
       'No se encontró la restaurante con el id indicado',
     );
   });
+
+  it('obtenerTodos debe retornar todas los restaurantes', async () => {
+    jest.spyOn(service, 'obtenerTodos').mockImplementation(() => Promise.resolve(restauranteLista));
+    expect(await controller.obtenerTodos()).toBe(restauranteLista);
+  })
+
+  it('obtenerPorId debe retornar un restaurante por id', async () => {
+    jest.spyOn(service, 'obtenerPorId').mockImplementation(() => Promise.resolve(restauranteLista[0]))
+    expect(await controller.obtenerRestaurante(restauranteLista[0].id)).toBe(restauranteLista[0])
+  })
 });

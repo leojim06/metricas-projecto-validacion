@@ -8,6 +8,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
+import { CulturaGastronomicaProductoController } from './cultura-gastronomica-producto.controller';
 
 describe('CulturaGastronomicaProductoService', () => {
   let service: CulturaGastronomicaProductoService;
@@ -15,6 +16,8 @@ describe('CulturaGastronomicaProductoService', () => {
   let productoRepository: Repository<ProductoEntity>;
   let culturaGastronomica: CulturaGastronomicaEntity;
   let productosList: ProductoEntity[];
+  let nuevoProducto: ProductoEntity;
+  let controller: CulturaGastronomicaProductoController
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -41,6 +44,7 @@ describe('CulturaGastronomicaProductoService', () => {
     productoRepository = module.get<Repository<ProductoEntity>>(
       getRepositoryToken(ProductoEntity),
     );
+    controller = new CulturaGastronomicaProductoController(service)
     await seedDatabase();
   });
 
@@ -62,6 +66,12 @@ describe('CulturaGastronomicaProductoService', () => {
       nombre: faker.company.name(),
       descripcion: faker.lorem.sentence(),
       productos: productosList,
+    });
+
+    nuevoProducto = await productoRepository.save({
+      nombre: faker.commerce.productName(),
+      descripcion: faker.commerce.productDescription(),
+      historia: faker.lorem.sentence(),
     });
   };
 
@@ -310,4 +320,28 @@ describe('CulturaGastronomicaProductoService', () => {
       'El producto con el id suministrado no está asociado a la cultura gastronómica',
     );
   });
+
+  it('obtenerProductosPorIdCulturaGastronomica debe retornar todos los paise de una cultura gastronómica', async () => {
+    jest.spyOn(service, 'obtenerProductosPorIdCulturaGastronomica')
+      .mockImplementation(() => Promise.resolve(productosList));
+    expect(await controller.obtenerProductosPorIdCulturaGastronomica(culturaGastronomica.id)).toBe(productosList);
+  })
+
+  it('obtenerProductoPorIdCulturaGastronomicaYIdProducto debe retornar una cultura gastronomica por id', async () => {
+    jest.spyOn(service, 'obtenerProductoPorIdCulturaGastronomicaYIdProducto')
+      .mockImplementation(() => Promise.resolve(productosList[0]))
+    expect(await controller
+      .obtenerProductoPorIdCulturaGastronomicaYIdProducto(culturaGastronomica.id, productosList[0].id))
+      .toBe(productosList[0])
+  })
+
+  it('agregarPaisCulturaGastronomica debe asociar un producto con una cultura gastronomica', async () => {
+    jest.spyOn(service, 'adicionarProductoACulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.adicionarProductoACulturaGastronomica(culturaGastronomica.id, nuevoProducto.id)).toBe(culturaGastronomica)
+  })
+
+  it('eliminarProductoCulturaGastronomica debe eliminar un producto de una cultura gastronomica un pais', async () => {
+    jest.spyOn(service, 'eliminarProductoCulturaGastronomica').mockImplementation(() => Promise.resolve(culturaGastronomica))
+    expect(await controller.deleteArtworkMuseum(culturaGastronomica.id, productosList[0].id)).toBe(culturaGastronomica)
+  })
 });

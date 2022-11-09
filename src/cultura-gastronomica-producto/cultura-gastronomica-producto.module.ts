@@ -1,7 +1,7 @@
 import { CacheModule, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CulturaGastronomicaEntity } from 'src/cultura-gastronomica/cultura-gastronomica.entity';
-import { ProductoEntity } from 'src/producto/producto.entity';
+import { CulturaGastronomicaEntity } from '../cultura-gastronomica/cultura-gastronomica.entity';
+import { ProductoEntity } from '../producto/producto.entity';
 import { CulturaGastronomicaProductoService } from './cultura-gastronomica-producto.service';
 import { CulturaGastronomicaProductoController } from './cultura-gastronomica-producto.controller';
 import { CulturaGastronomicaProductoResolver } from './cultura-gastronomica-producto.resolver';
