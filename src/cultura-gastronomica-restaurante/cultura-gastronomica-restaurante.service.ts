@@ -8,6 +8,9 @@ import {
 } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { RestauranteEntity } from '../restaurante/restaurante.entity';
+import { IGetProduct, IProduct } from 'src/producto/product.interface';
+import products from "../producto/product.data";
+
 
 @Injectable()
 export class CulturaGastronomicaRestauranteService {
@@ -193,5 +196,11 @@ export class CulturaGastronomicaRestauranteService {
       (r) => r.id !== restauranteId,
     );
     await this.culturaGastronomicaRepository.save(culturaGastronomica);
+  }
+
+
+  delete({ id }: IGetProduct): boolean {
+    products.filter((product: IProduct) => product.id == id);
+    return true;
   }
 }
