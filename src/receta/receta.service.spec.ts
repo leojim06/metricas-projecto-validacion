@@ -91,8 +91,7 @@ describe('RecetaService', () => {
   it('actualizar debe modificar una receta', async () => {
     const recetaAletoria: RecetaEntity = recetaLista[0];
     (recetaAletoria.nombre =
-      faker.commerce.productAdjective + ' ' + faker.animal.type() + ' '),
-      (recetaAletoria.descripcion = faker.lorem.sentence());
+      faker.commerce.productAdjective + ' ' + faker.animal.type() + ' ');
     recetaAletoria.instruccionesPreparacion = faker.lorem.sentence();
     recetaAletoria.foto = faker.image.food();
     recetaAletoria.video = faker.image.food();
