@@ -8,7 +8,7 @@ import {
 } from '../shared/errors/business-errors';
 import { Repository } from 'typeorm';
 import { RestauranteEntity } from '../restaurante/restaurante.entity';
-import { IGetProduct, IProduct } from 'src/producto/product.interface';
+import { IGetProduct } from 'src/producto/product.interface';
 import products from "../producto/product.data";
 
 

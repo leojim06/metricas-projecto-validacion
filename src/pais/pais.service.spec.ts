@@ -7,7 +7,6 @@ import { PaisService } from './pais.service';
 import { faker } from '@faker-js/faker';
 import { CacheModule } from '@nestjs/common';
 import * as sqliteStore from 'cache-manager-sqlite';
-import { PaisController } from './pais.controller';
 
 describe('PaisService', () => {
   let service: PaisService;
