@@ -102,8 +102,7 @@ describe('RestauranteService', () => {
   it('actualizar debe modificar una restaurante', async () => {
     const restauranteAletoria: RestauranteEntity = restauranteLista[0];
     (restauranteAletoria.nombre =
-      faker.commerce.productAdjective + ' ' + faker.animal.type() + ' '),
-      (restauranteAletoria.ciudad = faker.lorem.sentence());
+      faker.commerce.productAdjective + ' ' + faker.animal.type() + ' ');
     restauranteAletoria.estrellasMichelin = faker.datatype.number();
     restauranteAletoria.anioConsecucionEstrellaMichelin =
       faker.datatype.number();
